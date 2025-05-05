@@ -1,0 +1,59 @@
+<!-- 
+<div class="container">
+  <mat-card>
+    <mat-card-title>Correct Exam Answers</mat-card-title>
+    <mat-card-content>
+      <mat-list *ngIf="results.length; else noResults">
+        <mat-list-item *ngFor="let result of results">
+          <span>Exam: {{ result.examId.title }} | Score: {{ result.correctCount }} / {{ result.totalQuestions }}</span>
+          <mat-list *ngIf="result.results.length; else noCorrectAnswers">
+            <mat-list-item *ngFor="let item of result.results">
+              {{ item.question }}: Correct
+            </mat-list-item>
+          </mat-list>
+          <ng-template #noCorrectAnswers>
+            <p>No correct answers for this exam.</p>
+          </ng-template>
+        </mat-list-item>
+      </mat-list>
+      <ng-template #noResults>
+        <p>No results available.</p>
+      </ng-template>
+    </mat-card-content>
+  </mat-card>
+</div> -->
+
+
+<div class="container mt-5">
+  <div class="card shadow-sm border-0">
+    <div class="card-header bg-primary text-white fw-bold">
+      Correct Exam Answers
+    </div>
+    <div class="card-body">
+      <div *ngIf="results.length; else noResults">
+        <div *ngFor="let result of results" class="mb-4">
+          <h5 class="text-dark">
+            📝 Exam: <span class="text-primary">{{ result.examId.title }}</span>
+          </h5>
+          <p class="mb-2">✅ Score: <strong>{{ result.correctCount }} / {{ result.totalQuestions }}</strong></p>
+
+          <ul *ngIf="result.results.length; else noCorrectAnswers" class="list-group list-group-flush mb-3">
+            <li *ngFor="let item of result.results" class="list-group-item">
+              <i class="bi bi-check-circle text-success me-2"></i>{{ item.question }}: <strong>Correct</strong>
+            </li>
+          </ul>
+
+          <ng-template #noCorrectAnswers>
+            <div class="alert alert-warning p-2">No correct answers for this exam.</div>
+          </ng-template>
+
+          <hr>
+        </div>
+      </div>
+
+      <ng-template #noResults>
+        <div class="alert alert-info">No results available.</div>
+      </ng-template>
+    </div>
+  </div>
+</div>

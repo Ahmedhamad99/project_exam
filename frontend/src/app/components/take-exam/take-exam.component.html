@@ -1,0 +1,26 @@
+
+<div class="container" *ngIf="exam">
+  <mat-card>
+    <mat-card-title>{{ exam.title }}</mat-card-title>
+    <mat-card-content>
+      <form (ngSubmit)="submitExam()">
+        <div *ngFor="let question of exam.questions; let i = index">
+          <mat-card>
+            <mat-card-title>{{ question.text }}</mat-card-title>
+            <mat-card-content>
+              <mat-radio-group [(ngModel)]="answers[i]" [name]="'answer' + i">
+                <mat-radio-button *ngFor="let option of question.options; let j = index" [value]="option">
+                  {{ option }}
+                </mat-radio-button>
+              </mat-radio-group>
+            </mat-card-content>
+          </mat-card>
+        </div>
+        <button mat-raised-button color="primary" type="submit">Submit Exam</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
+<div *ngIf="!exam">
+  <p>Loading exam...</p>
+</div>
